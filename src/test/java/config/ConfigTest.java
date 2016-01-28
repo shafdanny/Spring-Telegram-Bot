@@ -22,7 +22,6 @@ public class ConfigTest {
     public void testGetConfigFile(){
 
         try {
-
             input = new FileInputStream("config.properties");
 
             // load a properties file
@@ -39,7 +38,6 @@ public class ConfigTest {
                 }
             }
         }
-
     }
 
     @Test
