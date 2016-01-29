@@ -1,5 +1,7 @@
 package method;
 
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -19,46 +21,23 @@ public class SendMessage extends TelegramBotMethod{
     @Override
     public <T> void executeMethod(T... args) throws RuntimeException {
 
-        String urlString = buildUrl(args);
-
-        URI fullRequestUrl = null;
-
-        try {
-            fullRequestUrl = new URI(urlString);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        String chat_id = (String)args[0];
+        String text = (String)args[1];
 
         RestTemplate restTemplate = new RestTemplate();
 
-        restTemplate.postForObject(fullRequestUrl, null, Object.class);
-    }
-
-    @Override
-    public <T> String buildUrl(T... args) {
-
-        String chat_id = (String) args[0];
-        String text = (String) args[1];
-
-        URI targetUrl;
-
-        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(getFullUrl())
-                .queryParam("chat_id", chat_id)
-                .queryParam("text", text);
-
-        String parse_mode;
+        MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+        map.add("chat_id", chat_id);
+        map.add("text", text);
 
         try{
-            parse_mode = (String) args[2];
-            uriComponentsBuilder.queryParam("parse_mode", parse_mode);
-        }
-        catch (Exception e){
+            String parse_mode = (String) args[2];
+            map.add("parse_mode", parse_mode);
+        }catch(Exception e){
             e.printStackTrace();
         }
 
+        restTemplate.postForObject(getFullUrl(), map, Object.class);
 
-        targetUrl = uriComponentsBuilder.build().toUri();
-
-        return targetUrl.toString();
     }
 }

@@ -28,10 +28,6 @@ public abstract class TelegramBotMethod {
         throw MethodNotDefined(endpoint, "executeMethod");
     }
 
-    public <T> String buildUrl(T... args){
-        throw MethodNotDefined(endpoint, "buildUrl");
-    }
-
     private static RuntimeException MethodNotDefined(String endpoint, String methodName) {
         return new RuntimeException("In " + endpoint + " method: " + methodName + ": this method is not defined");
     }

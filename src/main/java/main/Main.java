@@ -2,6 +2,7 @@ package main;
 
 import method.GetUpdates;
 import method.SendMessage;
+import method.SendPhoto;
 import method.TelegramBotMethod;
 import object.Message;
 import utility.MessageListener;
@@ -15,6 +16,9 @@ public class Main {
 
         TelegramBotMethod sendMessage = new SendMessage("/sendMessage");
         sendMessage.executeMethod(testReceiverId, "<b>bold</b> ke ni", "HTML");
+
+        TelegramBotMethod sendPhoto = new SendPhoto("/sendPhoto");
+        sendPhoto.executeMethod(testReceiverId);
 
         GetUpdates getUpdates = new GetUpdates("/getUpdates");
 
