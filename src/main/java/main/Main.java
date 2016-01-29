@@ -14,6 +14,7 @@ public class Main {
         String testReceiverId = "53921753";
 
         TelegramBotMethod sendMessage = new SendMessage("/sendMessage");
+        sendMessage.executeMethod(testReceiverId, "<b>bold</b> ke ni", "HTML");
 
         GetUpdates getUpdates = new GetUpdates("/getUpdates");
 
