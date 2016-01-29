@@ -24,7 +24,7 @@ public abstract class TelegramBotMethod {
     }
 
     // All subclass must override this method, or else it will throw an exception
-    public <T> void executeMethod(T... args) throws RuntimeException {
+    public <T> void execute(T... args) throws RuntimeException {
         throw MethodNotDefined(endpoint, "executeMethod");
     }
 

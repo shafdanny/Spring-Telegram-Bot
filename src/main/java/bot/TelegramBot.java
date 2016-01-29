@@ -27,9 +27,18 @@ public abstract class TelegramBot {
         commandList.add(command);
     }
 
-    private static void init(){
+    public TelegramBotCommand getCommand(String commandName){
+        for(TelegramBotCommand command:commandList){
+            if(command.getCommandName().equals(commandName))
+                return command;
+        }
 
+        return null;
     }
 
+    public abstract void initCommandList();
+
     public abstract void run();
+
+
 }

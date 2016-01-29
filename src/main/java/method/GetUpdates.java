@@ -23,12 +23,12 @@ public class GetUpdates extends TelegramBotMethod{
         newMessageListeners.add(listener);
     }
 
-    public GetUpdates(String endpoint) {
-        super(endpoint);
+    public GetUpdates() {
+        super("/getUpdates");
     }
 
     @Override
-    public <T> void executeMethod(T... args) throws RuntimeException {
+    public <T> void execute(T... args) throws RuntimeException {
 
         while(true) {
             URI targetUrl = UriComponentsBuilder.fromUriString(getFullUrl())

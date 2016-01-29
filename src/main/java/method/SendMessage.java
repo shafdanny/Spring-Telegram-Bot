@@ -3,23 +3,18 @@ package method;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import java.net.URI;
-import java.net.URISyntaxException;
 
 
 /**
  * Created by shafiq on 29/01/16.
  */
 public class SendMessage extends TelegramBotMethod{
-    public SendMessage(String endpoint) {
-        super(endpoint);
+    public SendMessage() {
+        super("/sendMessage");
     }
 
     @Override
-    public <T> void executeMethod(T... args) throws RuntimeException {
+    public <T> void execute(T... args) throws RuntimeException {
 
         String chat_id = (String)args[0];
         String text = (String)args[1];
