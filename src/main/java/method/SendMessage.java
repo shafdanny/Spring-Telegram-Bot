@@ -4,6 +4,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
 
 /**
@@ -15,9 +16,28 @@ public class SendMessage extends TelegramBotMethod{
     }
 
     @Override
-    public void executeMethod(String... args) throws RuntimeException {
-        String chat_id = "53921753";
-        String text = args[0];
+    public <T> void executeMethod(T... args) throws RuntimeException {
+
+        String urlString = buildUrl(args);
+        
+        URI fullRequestUrl = null;
+
+        try {
+            fullRequestUrl = new URI(urlString);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        restTemplate.postForObject(fullRequestUrl, null, Object.class);
+    }
+
+    @Override
+    public <T> String buildUrl(T... args) {
+        String chat_id = (String) args[0];
+        String text = (String) args[1];
+
 
         URI targetUrl = UriComponentsBuilder.fromUriString(getFullUrl())
                 .queryParam("chat_id", chat_id)
@@ -25,8 +45,6 @@ public class SendMessage extends TelegramBotMethod{
                 .build()
                 .toUri();
 
-        RestTemplate restTemplate = new RestTemplate();
-
-        restTemplate.postForObject(targetUrl, null, Object.class);
+        return targetUrl.toString();
     }
 }

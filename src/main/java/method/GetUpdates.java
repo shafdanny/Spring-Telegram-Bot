@@ -1,22 +1,10 @@
 package method;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.JsonToken;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.javafx.tools.packager.Log;
-
-import config.Config;
 import object.Update;
-import object.User;
-
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import utility.MessageListener;
 
-import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,26 +14,40 @@ import java.util.List;
  *
  * Get the updates from Telegram server.
  */
-public class GetUpdates {
-    public static void main(String[] args){
-        String url = "https://api.telegram.org/bot187744061:AAEuMsPg9J3TElLGam2bvHx8YTat344maqU/getUpdates";
-        int updateIdStart = 883762352;
+public class GetUpdates extends TelegramBotMethod{
 
+    private int updateIdStart = 0;
+    private static List<MessageListener> newMessageListeners = new ArrayList<>();
+
+    public static void addNewMessageListener(MessageListener listener){
+        newMessageListeners.add(listener);
+    }
+
+    public GetUpdates(String endpoint) {
+        super(endpoint);
+    }
+
+    @Override
+    public <T> void executeMethod(T... args) throws RuntimeException {
 
         while(true) {
-            URI targetUrl = UriComponentsBuilder.fromUriString(url)
+            URI targetUrl = UriComponentsBuilder.fromUriString(getFullUrl())
                     .queryParam("offset", updateIdStart + 1)
                     .build()
                     .toUri();
 
             RestTemplate restTemplate = new RestTemplate();
+
             GetUpdatesResponse test = restTemplate.getForObject(targetUrl, GetUpdatesResponse.class);
 
             ArrayList<Update> updateList = (ArrayList<Update>) test.getResult();
 
             for (Update update : updateList) {
                 // Action to run when a new message is received
-                System.out.println(update.getMessage().getText());
+
+                for(MessageListener listener:newMessageListeners){
+                    listener.newMessage(update.getMessage());
+                }
 
                 // Update the update_id so that we only request recent messages
                 if(update.getUpdate_id()>updateIdStart)
@@ -58,6 +60,5 @@ public class GetUpdates {
                 e.printStackTrace();
             }
         }
-
     }
 }

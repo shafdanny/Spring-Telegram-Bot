@@ -12,11 +12,11 @@ public abstract class TelegramBotMethod {
 
     private String endpoint;
 
+    private String fullUrl;
+
     public String getFullUrl() {
         return fullUrl;
     }
-
-    private String fullUrl;
 
     public TelegramBotMethod(String endpoint){
         this.endpoint = endpoint;
@@ -24,11 +24,15 @@ public abstract class TelegramBotMethod {
     }
 
     // All subclass must override this method, or else it will throw an exception
-    public void executeMethod(String... args) throws RuntimeException {
-        throw MethodExecutionNotDefined();
+    public <T> void executeMethod(T... args) throws RuntimeException {
+        throw MethodNotDefined(endpoint, "executeMethod");
     }
 
-    private static RuntimeException MethodExecutionNotDefined() {
-        return new RuntimeException("The execution of this method is not defined");
+    public <T> String buildUrl(T... args){
+        throw MethodNotDefined(endpoint, "buildUrl");
+    }
+
+    private static RuntimeException MethodNotDefined(String endpoint, String methodName) {
+        return new RuntimeException("In " + endpoint + " method: " + methodName + ": this method is not defined");
     }
 }
