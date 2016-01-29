@@ -1,6 +1,7 @@
 package method;
 
 import com.sun.xml.internal.xsom.impl.util.Uri;
+import config.Config;
 import object.Update;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -13,7 +14,8 @@ import java.util.ArrayList;
  */
 public class SendMessage {
     public static void main(String[] args){
-        String url = "https://api.telegram.org/bot187744061:AAEuMsPg9J3TElLGam2bvHx8YTat344maqU/sendMessage";
+        String url = Config.getURL() + Config.getAPIKey() + "/sendMessage";
+        System.out.println(url);
 
         String chat_id = "53921753";
         String text = "This is a test message";

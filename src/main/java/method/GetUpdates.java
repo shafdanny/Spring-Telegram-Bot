@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.javafx.tools.packager.Log;
 
+import config.Config;
 import object.Update;
 import object.User;
 
@@ -22,6 +23,8 @@ import java.util.List;
 
 /**
  * Created by shafiq on 29/01/16.
+ *
+ * Get the updates from Telegram server.
  */
 public class GetUpdates {
     public static void main(String[] args){
@@ -41,8 +44,10 @@ public class GetUpdates {
             ArrayList<Update> updateList = (ArrayList<Update>) test.getResult();
 
             for (Update update : updateList) {
+                // Action to run when a new message is received
                 System.out.println(update.getMessage().getText());
 
+                // Update the update_id so that we only request recent messages
                 if(update.getUpdate_id()>updateIdStart)
                     updateIdStart = update.getUpdate_id();
             }
