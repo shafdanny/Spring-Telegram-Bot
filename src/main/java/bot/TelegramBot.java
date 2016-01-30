@@ -18,10 +18,24 @@ public abstract class TelegramBot {
     private List<TelegramBotCommand> commandList;
     private String name;
 
+    // All the method that can be used for the communication with Telegram server
+    private GetUpdates getUpdates = new GetUpdates();
+    private SendMessage sendMessage = new SendMessage();
+
     public TelegramBot(String name){
         this.name = name;
         commandList = new ArrayList<TelegramBotCommand>();
+        getUpdates.addNewMessageListener(new MessageListener() {
+            @Override
+            public void onNewMessageEvent(Message message) {
+                newMessageReceived(message);
+            }
+        });
+        getUpdates.execute();
+
     }
+
+    public abstract void newMessageReceived(Message message);
 
     public void addCommand(TelegramBotCommand command){
         commandList.add(command);

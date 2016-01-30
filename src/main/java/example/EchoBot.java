@@ -19,21 +19,18 @@ public class EchoBot extends TelegramBot {
     }
 
     @Override
+    public void newMessageReceived(Message message) {
+        String sender_id = Integer.toString(message.getChat().getId());
+        new SendMessage().execute(sender_id, "ECHO: " + message.getText());
+    }
+
+    @Override
     public void initCommandList() {
 
     }
 
     @Override
     public void run() {
-        GetUpdates getUpdates = new GetUpdates();
-        getUpdates.addNewMessageListener(new MessageListener() {
-            @Override
-            public void onNewMessageEvent(Message message) {
-                String sender_id = Integer.toString(message.getChat().getId());
-                new SendMessage().execute(sender_id, "ECHO: " + message.getText());
-            }
-        });
-        getUpdates.execute();
 
     }
 }

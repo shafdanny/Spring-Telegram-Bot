@@ -19,6 +19,11 @@ public class TestBot extends TelegramBot {
     }
 
     @Override
+    public void newMessageReceived(Message message) {
+
+    }
+
+    @Override
     public void initCommandList() {
         addCommand(new TelegramBotCommand("/help") {
             @Override
@@ -35,22 +40,5 @@ public class TestBot extends TelegramBot {
     @Override
     public void run() {
 
-        GetUpdates getUpdates = new GetUpdates();
-        getUpdates.addNewMessageListener(new MessageListener() {
-            @Override
-            public void onNewMessageEvent(Message message) {
-                TelegramBotCommand command = getCommand(message.getText());
-                if(command != null){
-                    command.run(message);
-                }
-                else if(message.getText().equals("hello")){
-                    new SendPhoto().execute(Integer.toString(message.getFrom().getId()));
-                }
-                else
-                    new SendMessage().execute(Integer.toString(message.getFrom().getId()), "<b>NO COMMAND FOUND</b> Please try again", "HTML");
-            }
-        });
-
-        getUpdates.execute();
     }
 }
