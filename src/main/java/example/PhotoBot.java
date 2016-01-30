@@ -11,11 +11,6 @@ import object.Message;
  */
 public class PhotoBot extends TelegramBot {
 
-    public PhotoBot() {
-        super();
-        System.out.println("created");
-    }
-
     @Override
     public void newMessageReceived(Message message) {
         executeCommand(message);

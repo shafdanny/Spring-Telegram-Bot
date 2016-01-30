@@ -8,7 +8,9 @@ The developer of bot can focus on programming the bot.
 
 ## Getting started
 
-For now, the project can only be imported using Maven. 
+What you need:
+- Java 1.8
+- Maven
 
 ## Creating a bot
 

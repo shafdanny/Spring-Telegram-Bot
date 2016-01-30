@@ -10,6 +10,9 @@ import java.util.List;
 
 /**
  * Created by shafiq on 29/01/16.
+ *
+ * The basic skeleton for a Telegram Bot.
+ * Bot can be created by extending this class.
  */
 public abstract class TelegramBot {
 
@@ -65,6 +68,12 @@ public abstract class TelegramBot {
 
     public abstract void initCommandList();
 
+    /**
+     * Check if the message contains a command that we have defined.
+     * If yes, execute the run method that correspond to the command.
+     *
+     * @param message
+     */
     public void executeCommand(Message message){
         if(getCommand(message.getText()) != null){
             getCommand(message.getText()).run(message);

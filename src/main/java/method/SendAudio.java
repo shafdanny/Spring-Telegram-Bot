@@ -19,7 +19,7 @@ public class SendAudio extends TelegramBotMethod {
     }
 
     @Override
-    public <T> void execute(T... args) throws RuntimeException {
+    public <T> void execute(T... args) {
         String chat_id = (String) args[0];
 
         String musicFile = (String) args[1];

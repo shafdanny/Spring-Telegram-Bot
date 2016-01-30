@@ -1,14 +1,9 @@
 package example;
 
 import bot.TelegramBot;
-import method.GetUpdates;
-import method.SendMessage;
-import object.Message;
-import utility.MessageListener;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import object.Message;
+
 
 /**
  * Created by shafiq on 30/01/16.

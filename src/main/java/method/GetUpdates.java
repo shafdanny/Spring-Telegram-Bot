@@ -28,7 +28,7 @@ public class GetUpdates extends TelegramBotMethod{
     }
 
     @Override
-    public <T> void execute(T... args) throws RuntimeException {
+    public <T> void execute(T... args)  {
 
         while(true) {
             URI targetUrl = UriComponentsBuilder.fromUriString(getFullUrl())

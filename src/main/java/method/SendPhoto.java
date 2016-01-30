@@ -19,7 +19,7 @@ public class SendPhoto extends TelegramBotMethod {
     }
 
     @Override
-    public <T> void execute(T... args) throws RuntimeException {
+    public <T> void execute(T... args) {
         String chat_id = (String) args[0];
 
         String photoFile = (String) args[1];
@@ -30,7 +30,7 @@ public class SendPhoto extends TelegramBotMethod {
 
         Path path = Paths.get(photoFile);
         String fileName = path.getFileName().toString();
-        System.out.println(fileName);
+        //System.out.println(fileName);
 
         byte[] fileArray = new byte[0];
         try {

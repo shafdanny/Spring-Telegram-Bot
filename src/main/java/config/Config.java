@@ -7,6 +7,9 @@ import java.util.Properties;
 
 /**
  * Created by shafiq on 29/01/16.
+ *
+ * Load configuration from a file.
+ *
  */
 public class Config {
     private static Properties prop = new Properties();
