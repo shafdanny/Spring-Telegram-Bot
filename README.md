@@ -18,3 +18,7 @@ Once you get the key, open the file `config.sample.properties` and put your API 
 A bot can be defined by inheriting the abstract class `TelegramBot`.
 
 ## Example
+To launch an example bot, use Maven as following:
+
+`mvn exec:java -Dexec.mainClass="example.EXAMPLE_BOT_NAME"`   
+ 
