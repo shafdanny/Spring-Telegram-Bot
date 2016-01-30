@@ -1,10 +1,7 @@
 package bot;
 
 import command.TelegramBotCommand;
-import method.GetUpdates;
-import method.SendMessage;
-import method.SendPhoto;
-import method.TelegramBotMethod;
+import method.*;
 import object.Message;
 import utility.MessageListener;
 
@@ -21,6 +18,7 @@ public abstract class TelegramBot {
     // All the method that can be used for the communication with Telegram server
     private GetUpdates getUpdates = new GetUpdates();
     private SendMessage sendMessage = new SendMessage();
+    private SendAudio sendAudio = new SendAudio();
 
     public TelegramBot(String name){
         this.name = name;
@@ -50,9 +48,15 @@ public abstract class TelegramBot {
         return null;
     }
 
-    public abstract void initCommandList();
+    public void sendMessage(String receiver, String message){
+        sendMessage.execute(receiver, message);
+    }
 
-    public abstract void run();
+    public void sendAudio(String sender_id){
+        sendAudio.execute(sender_id);
+    }
+
+    public abstract void initCommandList();
 
 
 }

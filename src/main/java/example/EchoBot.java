@@ -21,7 +21,7 @@ public class EchoBot extends TelegramBot {
     @Override
     public void newMessageReceived(Message message) {
         String sender_id = Integer.toString(message.getChat().getId());
-        new SendMessage().execute(sender_id, "ECHO: " + message.getText());
+        sendMessage(sender_id, "ECHO: " + message.getText());
     }
 
     @Override
@@ -29,8 +29,4 @@ public class EchoBot extends TelegramBot {
 
     }
 
-    @Override
-    public void run() {
-
-    }
 }

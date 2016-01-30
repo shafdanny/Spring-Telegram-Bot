@@ -37,8 +37,4 @@ public class TestBot extends TelegramBot {
         });
     }
 
-    @Override
-    public void run() {
-
-    }
 }
