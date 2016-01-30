@@ -18,16 +18,11 @@ import java.nio.file.Paths;
  *
  */
 public class EchoBot extends TelegramBot {
-    public EchoBot(String name) {
-        super(name);
-    }
 
     @Override
     public void newMessageReceived(Message message) {
         String sender_id = Integer.toString(message.getChat().getId());
         sendMessage(sender_id, "ECHO: " + message.getText());
-
-        sendPhoto(sender_id, "media/helloworld.png");
     }
 
     @Override
@@ -36,7 +31,7 @@ public class EchoBot extends TelegramBot {
     }
 
     public static void main(String[] args){
-        new EchoBot("Echo Bot");
+        new EchoBot();
     }
 
 }
