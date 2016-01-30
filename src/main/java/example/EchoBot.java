@@ -35,4 +35,8 @@ public class EchoBot extends TelegramBot {
 
     }
 
+    public static void main(String[] args){
+        new EchoBot("Echo Bot");
+    }
+
 }

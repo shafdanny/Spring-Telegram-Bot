@@ -17,7 +17,7 @@ import java.util.List;
 public class GetUpdates extends TelegramBotMethod{
 
     private int updateIdStart = 0;
-    private static List<MessageListener> newMessageListeners = new ArrayList<>();
+    private static List<MessageListener> newMessageListeners = new ArrayList<MessageListener>();
 
     public static void addNewMessageListener(MessageListener listener){
         newMessageListeners.add(listener);
