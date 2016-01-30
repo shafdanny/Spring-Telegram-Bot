@@ -22,18 +22,24 @@ public class SendAudio extends TelegramBotMethod {
     public <T> void execute(T... args) throws RuntimeException {
         String chat_id = (String) args[0];
 
+        String musicFile = (String) args[1];
+
+        Path path = Paths.get(musicFile);
+
         MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
         map.add("chat_id", chat_id);
 
-        Path file = Paths.get("aadc.mp3");
+        String fileName = path.getFileName().toString();
+        System.out.println(fileName);
+
         byte[] fileArray = new byte[0];
         try {
-            fileArray = Files.readAllBytes(file);
+            fileArray = Files.readAllBytes(path);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        map.add("audio", new FileMessageResource(fileArray, "aadc.mp3"));
+        map.add("audio", new FileMessageResource(fileArray, fileName));
 
         RestTemplate restTemplate = new RestTemplate();
 

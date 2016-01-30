@@ -6,6 +6,10 @@ import method.SendMessage;
 import object.Message;
 import utility.MessageListener;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 /**
  * Created by shafiq on 30/01/16.
  *
@@ -22,6 +26,8 @@ public class EchoBot extends TelegramBot {
     public void newMessageReceived(Message message) {
         String sender_id = Integer.toString(message.getChat().getId());
         sendMessage(sender_id, "ECHO: " + message.getText());
+
+        sendPhoto(sender_id, "media/helloworld.png");
     }
 
     @Override

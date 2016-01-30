@@ -5,6 +5,7 @@ import method.*;
 import object.Message;
 import utility.MessageListener;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public abstract class TelegramBot {
     // All the method that can be used for the communication with Telegram server
     private GetUpdates getUpdates = new GetUpdates();
     private SendMessage sendMessage = new SendMessage();
+    private SendPhoto sendPhoto = new SendPhoto();
     private SendAudio sendAudio = new SendAudio();
 
     public TelegramBot(String name){
@@ -52,8 +54,12 @@ public abstract class TelegramBot {
         sendMessage.execute(receiver, message);
     }
 
-    public void sendAudio(String sender_id){
-        sendAudio.execute(sender_id);
+    public void sendAudio(String sender_id, String filePath){
+        sendAudio.execute(sender_id, filePath);
+    }
+
+    public void sendPhoto(String sender_id, String filePath){
+        sendPhoto.execute(sender_id,filePath);
     }
 
     public abstract void initCommandList();
