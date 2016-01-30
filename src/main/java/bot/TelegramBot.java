@@ -1,21 +1,18 @@
 package bot;
 
-import com.oracle.tools.packager.Log;
 import command.TelegramBotCommand;
 import method.*;
 import object.Message;
 import utility.MessageListener;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Created by shafiq on 29/01/16.
  */
 public abstract class TelegramBot {
-    
+
     private List<TelegramBotCommand> commandList;
 
     // All the method that can be used for the communication with Telegram server

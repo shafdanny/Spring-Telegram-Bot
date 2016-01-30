@@ -29,7 +29,6 @@ public class SendMessage extends TelegramBotMethod{
             String parse_mode = (String) args[2];
             map.add("parse_mode", parse_mode);
         }catch(Exception e){
-            e.printStackTrace();
         }
 
         restTemplate.postForObject(getFullUrl(), map, Object.class);
