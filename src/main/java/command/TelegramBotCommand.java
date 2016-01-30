@@ -12,7 +12,7 @@ public abstract class TelegramBotCommand {
         this.commandName = commandName;
     }
 
-    public abstract Object run(Message message);
+    public abstract void run(Message message);
 
     public String getCommandName(){
         return  commandName;

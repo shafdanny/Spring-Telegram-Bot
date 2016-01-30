@@ -1,5 +1,6 @@
 package bot;
 
+import com.oracle.tools.packager.Log;
 import command.TelegramBotCommand;
 import method.*;
 import object.Message;
@@ -8,11 +9,13 @@ import utility.MessageListener;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by shafiq on 29/01/16.
  */
 public abstract class TelegramBot {
+    
     private List<TelegramBotCommand> commandList;
 
     // All the method that can be used for the communication with Telegram server
@@ -24,6 +27,7 @@ public abstract class TelegramBot {
 
     public TelegramBot(){
         commandList = new ArrayList<TelegramBotCommand>();
+        initCommandList();
         getUpdates.addNewMessageListener(new MessageListener() {
             public void onNewMessageEvent(Message message) {
                 newMessageReceived(message);
@@ -63,6 +67,15 @@ public abstract class TelegramBot {
     public void sendChatAction(String sender_id, String action) { sendChatAction.execute(sender_id,action);}
 
     public abstract void initCommandList();
+
+    public void executeCommand(Message message){
+        if(getCommand(message.getText()) != null){
+            getCommand(message.getText()).run(message);
+        }
+        else {
+            sendMessage(Integer.toString(message.getFrom().getId()),  "Unknown command");
+        }
+    }
 
 
 }

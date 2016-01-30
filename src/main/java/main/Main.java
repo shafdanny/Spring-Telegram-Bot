@@ -15,7 +15,7 @@ import utility.MessageListener;
 public class Main {
 
     public static void main(String[] args){
-        TelegramBot echoBot = new EchoBot("EchoBot");
+
     }
 
 
