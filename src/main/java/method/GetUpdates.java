@@ -46,7 +46,7 @@ public class GetUpdates extends TelegramBotMethod{
                 // Action to run when a new message is received
 
                 for(MessageListener listener:newMessageListeners){
-                    listener.newMessage(update.getMessage());
+                    listener.onNewMessageEvent(update.getMessage());
                 }
 
                 // Update the update_id so that we only request recent messages

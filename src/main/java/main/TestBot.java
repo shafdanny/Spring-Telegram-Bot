@@ -38,7 +38,7 @@ public class TestBot extends TelegramBot {
         GetUpdates getUpdates = new GetUpdates();
         getUpdates.addNewMessageListener(new MessageListener() {
             @Override
-            public void newMessage(Message message) {
+            public void onNewMessageEvent(Message message) {
                 TelegramBotCommand command = getCommand(message.getText());
                 if(command != null){
                     command.run(message);
