@@ -21,6 +21,7 @@ public abstract class TelegramBot {
     private SendMessage sendMessage = new SendMessage();
     private SendPhoto sendPhoto = new SendPhoto();
     private SendAudio sendAudio = new SendAudio();
+    private SendChatAction sendChatAction = new SendChatAction();
 
     public TelegramBot(String name){
         this.name = name;
@@ -61,6 +62,8 @@ public abstract class TelegramBot {
     public void sendPhoto(String sender_id, String filePath){
         sendPhoto.execute(sender_id,filePath);
     }
+
+    public void sendChatAction(String sender_id, String action) { sendChatAction.execute(sender_id,action);}
 
     public abstract void initCommandList();
 

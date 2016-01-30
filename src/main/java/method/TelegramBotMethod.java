@@ -23,12 +23,7 @@ public abstract class TelegramBotMethod {
         fullUrl = url + endpoint;
     }
 
-    // All subclass must override this method, or else it will throw an exception
-    public <T> void execute(T... args) throws RuntimeException {
-        throw MethodNotDefined(endpoint, "executeMethod");
-    }
 
-    private static RuntimeException MethodNotDefined(String endpoint, String methodName) {
-        return new RuntimeException("In " + endpoint + " method: " + methodName + ": this method is not defined");
-    }
+    public abstract <T> void execute(T... args);
+
 }

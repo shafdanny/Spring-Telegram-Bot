@@ -15,6 +15,6 @@ Open a Telegram application and search for [BotFather](https://telegram.me/botfa
 Once you get the key, open the file `config.sample.properties` and put your API key. Rename the file to `config.properties`
 
 ### Define a bot
-A bot can be defined by inheriting the abstract class`TelegramBot`.
+A bot can be defined by inheriting the abstract class `TelegramBot`.
 
 ## Example

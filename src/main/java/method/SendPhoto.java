@@ -40,10 +40,13 @@ public class SendPhoto extends TelegramBotMethod {
         }
 
         map.add("photo", new FileMessageResource(fileArray, fileName));
-        map.add("caption", "this is a caption");
 
         RestTemplate restTemplate = new RestTemplate();
 
+        new SendChatAction().execute(chat_id, "upload_photo");
+
         Object response = restTemplate.postForObject(getFullUrl(), map, Object.class);
+
+
     }
 }
