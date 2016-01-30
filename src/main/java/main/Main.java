@@ -1,6 +1,7 @@
 package main;
 
 import bot.TelegramBot;
+import example.EchoBot;
 import method.GetUpdates;
 import method.SendMessage;
 import method.SendPhoto;
@@ -14,8 +15,8 @@ import utility.MessageListener;
 public class Main {
 
     public static void main(String[] args){
-        TestBot testBot = new TestBot("TestBot");
-        testBot.run();
+        TelegramBot echoBot = new EchoBot("EchoBot");
+        echoBot.run();
     }
 
 
