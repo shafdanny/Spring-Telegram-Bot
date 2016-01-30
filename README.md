@@ -1,12 +1,14 @@
 # Telegram Bot
 
+Please refer to the [wiki](https://github.com/shafdanny/Telegram-Bot/wiki) for more detailed information.
+
 ## About
 This is a framework for Java, designed to help minimise the coding needed for the communication with Telegram server.
 The developer of bot can focus on programming the bot.
 
 ## Getting started
 
-For now, the project can only be imported using Maven.
+For now, the project can only be imported using Maven. 
 
 ## Creating a bot
 
