@@ -2,6 +2,8 @@
 
 Please refer to the [wiki](https://github.com/shafdanny/Telegram-Bot/wiki) for more detailed information.
 
+[![Build Status](http://localhost:8080/job/Telegram%20Bot%20Java/badge/icon)](http://localhost:8080/job/Telegram%20Bot%20Java/)
+
 ## About
 This is a framework for Java, designed to help minimise the coding needed for the communication with Telegram server.
 The developer of bot can focus on programming the bot.
